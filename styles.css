@@ -1,0 +1,291 @@
+/* Reset de CSS e Variáveis */
+:root {
+    --bg-dark: #050507;
+    --bg-panel: #13131f;
+    --bg-panel-hover: #1c1c2e;
+
+    --primary: #8a2be2;
+    --primary-glow: #8a2be280;
+    --secondary: #00ff9d;
+    --secondary-glow: #00ff9d80;
+
+    --text-main: #ffffff;
+    --text-muted: #a0a0b0;
+
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* Utilitários */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Cabeçalho */
+header {
+    padding: 20px 0;
+    background: rgba(5, 5, 7, 0.8);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    background: linear-gradient(to right, #fff, var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+/* Grid de Postagens */
+.features {
+    padding: 150px 0 100px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--text-muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.card {
+    background: var(--bg-panel);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: white;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.post-meta-tag {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.date {
+    color: var(--text-muted);
+}
+
+.tag {
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+/* Filtro Dropdown Compacto */
+.filter-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* Estilização do Dropdown Personalizado */
+.custom-dropdown {
+    width: 250px;
+    position: relative;
+    user-select: none;
+}
+
+.dropdown-header {
+    background: var(--bg-panel);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dropdown-header:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 0 15px var(--secondary-glow);
+}
+
+.dropdown-list {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background: rgba(19, 19, 31, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.custom-dropdown.active .dropdown-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.custom-dropdown.active .dropdown-header i {
+    transform: rotate(180deg);
+}
+
+.dropdown-list li {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dropdown-list li:hover {
+    background: rgba(0, 255, 157, 0.1);
+    color: var(--secondary);
+    padding-left: 25px;
+}
+
+
+
+
+/* Estilos Individuais das Postagens */
+.post-container {
+    max-width: 800px;
+    margin: 120px auto 50px;
+    padding: 0 20px;
+}
+
+.post-meta {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.post-content {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.post-content p {
+    margin-bottom: 20px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.post-meta .tag {
+    background: var(--primary-glow);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
